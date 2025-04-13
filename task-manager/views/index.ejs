@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<h1>Task Manager</h1>
+
+<form action="/tasks" method="POST">
+  <input type="text" name="title" placeholder="Task title" required />
+  <textarea name="description" placeholder="Task description (optional)"></textarea>
+  <button type="submit">Add Task</button>
+</form>
+
+<% if (errors.length > 0) { %>
+  <ul class="errors">
+    <% errors.forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<ul class="task-list">
+  <% tasks.forEach(task => { %>
+    <li class="<%= task.completed ? 'completed' : '' %>">
+      <form action="/tasks/<%= task.id %>?_method=PATCH" method="POST" style="display:inline;">
+        <button type="submit"><%= task.completed ? '✔' : '✘' %></button>
+      </form>
+      <strong><%= task.title %></strong> - <%= task.description %>
+      <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button type="submit">🗑</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('partials/footer') %>
