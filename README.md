@@ -38,7 +38,7 @@ Make sure you have the following installed:
 - [Git](https://git-scm.com/)
 
 
-## ⚙️ Installation
+## Installation
 **Clone the repository:**
 
    git clone [https://github.com/2019120162/TaskManagementApptest1.git]
